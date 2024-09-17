@@ -18,7 +18,7 @@ console.log(color());
 
   return (
     <nav className='w-[15%] h-screen bg-zinc-50 flex items-center flex-col pt-5'>
-        <a className='py-2 px-5 border rounded border-blue-200 text-blue-300 overflow-y-hidden overflow-y-auto' href="/cerate">Add New Product</a>
+        <a className='py-2 px-5 border rounded border-blue-200 text-blue-300 overflow-y-hidden overflow-y-auto' href="/create">Add New Product</a>
         <hr  className='w-[80%] my-3' />
         <h1 className='text-2xl w-[80%] mb-3'>Category Filter</h1>
     
@@ -28,7 +28,7 @@ console.log(color());
 
     
     <Link
-    key={i} to={`/category/${c}`} className='flex items-center mb-3'> 
+    key={i} to={`/?category=${c}`} className='flex items-center mb-3'> 
      <span style={{backgroundColor: color()}} className='rounded-full  mr-2 w-[15px] h-[15px] bg-blue-50'></span>{""}
       {c}
      </Link>
