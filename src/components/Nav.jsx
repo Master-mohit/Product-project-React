@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom';
 const Nav = () => {
 
   const [products] = useContext(productContext);
-let distinct_category = products && products.reduce((acc, cv) => [...acc, cv.category], []);
-distinct_category = [...new Set(distinct_category)];  // Corrected Set constructor
-console.log(distinct_category);
+  let distinct_category = Array.isArray(products) ? products.reduce((acc, cv) => [...acc, cv.category], []) : [];
+  distinct_category = [...new Set(distinct_category)];  // Remove duplicates
+  console.log(distinct_category);
 
 const color = () => {
   return `rgba(${(Math.random()*255).toFixed()},

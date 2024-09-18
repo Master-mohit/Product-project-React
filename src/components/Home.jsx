@@ -5,6 +5,7 @@ import { productContext } from '../utils/Context';
 import Loading from './Loading';
 import axios from '../utils/Axios';
 
+
 function Home() {
   const [products] = useContext(productContext);
   const { search } = useLocation();

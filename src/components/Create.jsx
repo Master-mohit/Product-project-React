@@ -1,16 +1,50 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useState } from 'react';
+import { productContext } from '../utils/Context';
+import {nanoid} from 'nanoid';
+import { useNavigate } from 'react-router-dom';
+import { stringify } from 'postcss';
 
 export const Create = () => {
-
+  const navi = useNavigate();
+  const [products, setproducts] = useContext(productContext);
   const [title , settitle ] = useState("");
   const [image , setimage ] = useState("");
   const [category , setcategory ] = useState("");
   const [price, setprice] = useState("");
   const [discription, setdiscription] = useState("");
+
+  const AddsubmitHandler = (e) => {
+    e.preventDefault();
+
+    if(title.trim().length < 5 ||
+     category.trim().length <5 ||
+     price.trim().length < 1 ||
+     discription.trim().length < 5 ){
+        alert("Each nd every input must have atleast 5 character");
+        return;
+     }
+ 
+    const product = {
+        id: nanoid(),
+        title,
+        image,
+        category,
+        price,
+        discription,
+
+    };
+    setproducts([...products,product]);
+    localStorage.setItem("products", JSON.stringify([...products,product]));
+    navi("/");
+    console.log(product);
+    
+    
+  }
+
   return (
     <>    
-    <form onSubmit={submitHandler} className='flex items-center flex-col p-[5%] h-screen w-screen'>
+    <form onSubmit={AddsubmitHandler} className='flex items-center flex-col p-[5%] h-screen w-screen'>
     <h1 className='text-2xl font-bold  w-1/2 mb-3 '>Add New Product</h1>
 
     <input type="url" placeholder='image link' 
